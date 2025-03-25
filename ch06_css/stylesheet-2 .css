@@ -1,0 +1,11 @@
+*{ padding: 0; margin: 0;}
+
+h1{ padding: 10px; background-color: #222; color: #fff; }
+div {background-color: antiquewhite; margin-bottom: 30px;}
+
+.font-red{color: red;}
+
+div#type-1 {padding: 20px 40px;}
+div#type-2 {padding: 50px 40px 20px;}
+div#type-3 {padding: 50px 40px 20px 10px; font-style: italic;}
+div#type-4 {padding: 50px 40px 0px 0px;}
