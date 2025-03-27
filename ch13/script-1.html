@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #heading {color: cornflowerblue; background-color: cornsilk;}
+</style>
+<body>
+    <h2>script-1.html</h2>
+    <h1 id="heading">자바스크립트</h1>
+    <div id="text">위 텍스트를 클릭해 보세요</div>
+    <div id="text2">위 텍스트를 클릭해 보세요</div>
+
+    <script>
+        const $heading = document.querySelector('#heading');
+        $heading.addEventListener('click', (e)=>{
+            e.target.style.color = 'red';
+            e.target.style.backgroundColor = '#39754e';
+        })
+        //e.target.style.color 다 멤버필드 ()이게 없으면 멤버필드
+        // 스타일 멤버필드 주소값에 저장된 멤버필드는 color
+        // 스타일과 관련된 객체주소값이 있다
+
+        $heading.addEventListener('click', ()=>{
+
+        })
+        
+        // 이거 근데 e가 함수에 들어가네 일반 람다식이랑 다르군
+        // 부모측에서 이벤트 터지면 자식도 전파 받음 이걸 막아야하는것도 중요
+
+        // $heading.onclick = function(){
+        //     alert('"안녕"');
+        //     alert("'안녕'");
+        //     $heading.style.color = 'red'; 
+        // } 응 옛날방식
+    </script>
+</body>
+</html>
+     <!--
+       const $heading = document.querySelectorAll('div'); 리스트로 가져옴
+       #은 아이디, .은 클래스     
+     
+     
+        ""는 내가 쌍따옴표를 표시하는 이유
+        alert('"안녕"');
+        alert("'안녕'"); -> 홑따옴표 감싸는 용도로만
+        그리고  소괄호 달려있으면 메소드이다.
+     
+     
+     
+     
+     -->

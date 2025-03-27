@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>script-1.html</h2>
+    <h1 id="div-alert">alert</h1>
+    <h1 id="div-prompt">prompt</h1>
+    <h1 id="div-console">console</h1>
+    <h1 id="div-confirm">confirm</h1>
+
+    <script>
+        const $divAlert = document.querySelector('#div-alert')
+        const $divPrompt = document.querySelector('#div-prompt')
+        const $divConsole = document.querySelector('#div-console')
+        const $divConfirm = document.querySelector('#div-confirm')
+
+        
+        $divAlert.addEventListener('click', ()=>{
+            alert('경고!')
+        })
+
+        $divConsole.addEventListener('click',()=>{
+            console.log('콘솔은 개발자가 보기위한 내용')
+            console.error('콘솔 에러')
+            console.info('콘솔 정보')
+            console.warn('콘솔 경고')
+        })
+
+        $divPrompt.addEventListener('click', ()=>{
+            const gender = prompt('성별을 입력해 주세요. (남/여)')
+            console.log(`gender: ${gender}`)
+        })
+
+        $divConfirm.addEventListener('click', ()=>{
+            if(confirm('삭제 하시겠습니까?')){
+                console.log('삭제처리')
+            }
+        })
+
+    </script>
+</body>
+</html>
+     <!--
+       const $heading = document.querySelectorAll('div'); 리스트로 가져옴
+       #은 아이디, .은 클래스     
+     
+     
+        ""는 내가 쌍따옴표를 표시하는 이유
+        alert('"안녕"');
+        alert("'안녕'"); -> 홑따옴표 감싸는 용도로만
+        그리고  소괄호 달려있으면 메소드이다.
+     
+     
+     
+     
+     -->

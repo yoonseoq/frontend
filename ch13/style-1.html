@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #page > span:not(:last-child){margin-right: 10px;}
+        #page > span{cursor: pointer;}
+
+        .selected{font-size: 1.2em; color: blue;}
+    </style>
+</head>
+<body>
+    <div id="page"></div>
+
+    <script>
+        const $page = document.querySelector('#page');
+       
+        const pageValue = 10;
+        const pageNumberArr = [];
+        for(let i=1; i<=pageValue; i++){
+            //span태그 생성
+            const span = document.createElement('span');
+            if(i === 1){
+                span.classList.add('selected')
+            }
+           // 클릭했을때 selected 만들고 싶다. 더블클릭 이벤트
+            pageNumberArr.push(span);
+            span.addEventListener('click', (e) => {
+                // 람다식에서 파라미터 하나면 소괄호 필요가 없다.
+                // 그리고 중괄호도 명령어가 하나면 생략가능
+                // 클릭이라는 행위가 발생하면 이벤트가 실행됨
+                pageNumberArr.forEach( item => item.classList.toggle('selected', item.innerText == i) );
+            
+            })
+            span.innerText = i;
+            $page.appendChild(span);
+        }
+
+    </script>
+</body>
+</html>
