@@ -15,6 +15,17 @@
             createIconEditor(document.body, 16, 16);
         });
 
+        const convertRgbToHex = rgb =>`#${rgb.match(/\d+/g).map(x => (+x).toString(16).padStart(2,0)).join('')}`;        
+
+        const getHEX = (RGB) => {  
+            const colors = RGB.replaceAll(' ', '').replace('rgb', '').replace('(', '').replace(')', '').replaceAll(' ', '').split(",");
+            
+            return '#' + (RGB && colors.map(color => Number(color).toString(16)
+                                                                  .padStart(2, '0'))
+                                                                  .join('')
+                                                                );
+        } 
+
         function createIconEditor(parent, nx, ny) {
             //input-color
             const $color = elt('input', { type: 'color' });
@@ -23,7 +34,7 @@
             //input-button(value="모두 삭제")
             const $clear = elt('input', { type: 'button', value: '모두 삭제'});
             $clear.addEventListener('click', () => {
-                cells.forEach(item => item.style.backgroundColor = '#ffffff');
+                cells.forEach(item => item.style.backgroundColor = '#fff');
             });
             parent.appendChild($clear);
 
@@ -38,21 +49,12 @@
                     const td = elt('td');
                     td.addEventListener('click', e => {
 
-                        const target = e.target;
-                        const selectedColor = $color.value;
-                        const currentColor = rgbToHex(getComputedStyle(target).backgroundColor)
-                        
-
-                        //값이 없거나 흰색이라면
-                        if(rgbToHex(currentColor) === selectedColor)  {
-                            console.log('값이 없거나 흰색이었음');
-                            target.style.backgroundColor = selectedColor; 
-                        }else if(currentColor === selectedColor){
-                            target.style.backgroundColor = "#ffffff";    
-                        }                         
-                        else { //색이 있었다면
-                            console.log('색상 있음');
-                            target.style.backgroundColor = $color.value; 
+                        if(e.target.style.backgroundColor !== '' 
+                        && e.target.style.backgroundColor !== 'rgb(255, 255, 255)' 
+                        && convertRgbToHex(e.target.style.backgroundColor) === $color.value) {
+                            e.target.style.backgroundColor = ''; 
+                        } else {
+                            e.target.style.backgroundColor = $color.value; 
                         }
                                                
                     });

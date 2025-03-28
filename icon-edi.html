@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이콘 에디터</title>
+    <style>
+        table { border-collapse: collapse; margin-top: 5px; }
+        td { border: 1px solid grey; width: 15px; height: 15px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <script>
+        window.addEventListener('load', () => createIconEditor(document.body, 16, 16));
+
+        function createIconEditor(parent, nx, ny) {
+            const $color = createElement('input', { type: 'color' });
+            const $clear = createElement('input', { type: 'button', value: '모두 삭제' });
+            const table = createElement('table');
+            const cells = [];
+
+            parent.append($color, $clear, table);
+
+            for (let i = 0; i < ny; i++) {
+                const tr = createElement('tr');
+                table.appendChild(tr);
+
+                for (let j = 0; j < nx; j++) {
+                    const td = createElement('td');
+                    td.addEventListener('click', () => {
+                        const selectedColor = $color.value;
+                        const currentColor = rgbToHex(td.style.backgroundColor);
+                        td.style.backgroundColor = (currentColor === selectedColor) ? "#ffffff" : selectedColor;
+                    });
+
+                    cells.push(td);
+                    tr.appendChild(td);
+                }
+            }
+
+            $clear.addEventListener('click', () => cells.forEach(td => td.style.backgroundColor = "#ffffff"));
+        }
+
+        function rgbToHex(rgb) {
+            if (!rgb.startsWith("rgb")) return rgb;
+            return `#${rgb.match(/\d+/g).map(x => (+x).toString(16).padStart(2, '0')).join('')}`;
+        }
+
+        function createElement(tag, attrs = {}) {
+            const elem = document.createElement(tag);
+            Object.entries(attrs).forEach(([key, value]) => elem.setAttribute(key, value));
+            return elem;
+        }
+    </script>
+</body>
+</html>
