@@ -20,12 +20,12 @@
             push : function(val){
                 this[this.length++] = val;
             },
-            'map': function( callback ){
+            'map': function( callback ) {
                 const temp = [];
-                for(let i=0; i<this.length; i++){
+                for(let i=0; i<this.length; i++) {
                     const result = callback(this[i]);
-                    temp.push(result)
-                }    
+                    temp.push(result);
+                }
                 return temp;
                 
             }
