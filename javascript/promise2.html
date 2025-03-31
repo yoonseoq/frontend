@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increaseAndPrint(n) {
+
+            return new Promise(function(resolve) {
+                setTimeout(function() {
+                    const increased = n + 1 ;
+                    console.log(`increased: ${increased}`);
+                    resolve(increased);
+                }, 1000); // 여기서 데이터 값을 보내준다
+        });
+    }
+
+    increaseAndPrint(0)
+    .then(function(data){
+        console.log(`data:${data}`);
+        return increaseAndPrint(data);
+    }).then(function(data2){
+        console.log(`data2:${data2}`);
+        return increaseAndPrint(data2);
+    }).then(function(data3){
+        console.log(`data3:${data3}`);
+    });
+    </script>
+</body>
+</html>

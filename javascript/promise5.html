@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increaseAndPrint(n) {
+
+            return new Promise(function(resolve) {
+                setTimeout(function() {
+                    const increased = n + 1 ;
+                    console.log(`increased: ${increased}`);
+                    resolve(increased);
+                }, 1000); // 여기서 데이터 값을 보내준다
+        });
+    }
+    //async - await
+
+    async function _call() {
+        try{
+            const data1 = await increaseAndPrint(0);
+            const data2 = await increaseAndPrint(data1);
+            const data3 = await increaseAndPrint(data2);
+            console.log(`data3: ${data3}`)
+        } catch(e) {
+            console.log(e);
+        }
+    }
+    _call();
+    </script>
+</body>
+</html>

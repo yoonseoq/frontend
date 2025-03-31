@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const p1 = Promise(function(resolve, reject){
+            const isSuccess = false;
+            setTimeout( function(){
+                if(isSuccess){
+                     resolve(100);
+                    }else{
+                        reject('에러발생')
+                    }                    
+                }, 100);
+        } );
+
+        p1.then( function(data){
+            console.log(`data: ${data}`);
+        } );
+        
+        p1.catch( function(err){
+            console.log(`err: ${err}`);
+        });
+
+        console.log("===================================")
+
+        function cb(resolve, reject){
+            resolve(999);
+        }
+
+        const p2 = new Promise(cb);
+        p2.then( function(data2){
+            console.log(`data:${data}`)
+        }),p2.catch( function(data2){
+            console.log(`err:${err}`)
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       // A > B > C > D
+       // A작업을 제외하고 나머지 작업은 선행작업의 결과값이 필요하다
+       // A쪽으로 갈수로 작업속도가 느린 것으로 살펴보자
+
+       //A작업
+       let a = 0;
+       setTimeout(function(){
+            a = 100;
+       }, 999);
+
+       let b = 0;
+       setTimeout(function(){
+            b = a*2;
+       }, 888)
+       
+       let c = 0;
+       setTimeout(function(){
+            c = b*5;
+            console.log(`c:${c}`);
+       }, 777)
+       
+       console.log('===============================');
+       
+       //콜백지옥
+
+       let a2 = 0;
+       setTimeout(function(){
+            a2 = 100;
+                   let b2 = 0;
+                   setTimeout(function(){
+                        b2 = a2*2;
+                        let c2 = 1;
+                        setTimeout(function(){
+                                c2 = b2*5;
+                                console.log(`c2:${c2}`);
+                        }, 777)
+                   }, 888)
+       }, 999);
+       
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [10,20,30];
+        arr.push(40);
+        console.log(arr.length);
+        const sum= arr.reduce(function(acc, cur){
+            return acc + cur;
+        });
+        const multiply= arr.reduce(function(acc, cur){
+            return acc * cur;
+        });
+        console.log(`sum:${sum}`)
+        console.log(`multiply:${multiply}`)
+        
+        const myArr = {
+            0: 10,
+            1: 20,
+            2: 30,
+            length: 3,
+            push:function(val){
+                this[this.length++] = val;
+            },
+            'reduce': function( callback ){
+                const temp= [];
+                for(let i=0; i<this.length; i++){
+                    const result = callback(this[i]);
+                    temp.push(result);   
+                }
+                return temp;
+             } // alt를 써서 옮기기
+        };
+        console.log(myArr.length);
+        myArr.push(40);
+    
+        const mySum = myArr.reduce(function(temp, cur){
+            return temp + cur;
+        });
+        console.log(`mySum: ${mySum}`)
+    
+    </script>
+
+    
+</body>
+</html>
